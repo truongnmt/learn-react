@@ -4,10 +4,6 @@ function printMyName(name) {
 printMyName('Max');
 
 
-
-
-
-
 const printMyName = name => {
     console.log(name);
 }
