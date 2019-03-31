@@ -9,11 +9,20 @@ class App extends Component {
       { name: 'Max', age: 28 },
       { name: 'Manu', age: 29 },
       { name: 'Steven', age: 26 }
-    ]
+    ],
+    otherState: 'some other value'
   }
 
   switchNameHandler = () => {
-    console.log('Was clicked!');
+    // console.log('Was clicked!');
+    // DONT DO THIS: this.state.person[0].name = "Maxxxxx"
+    this.setState({
+      persons: [
+        { name: 'Maxxxxx', age: 28 },
+        { name: 'Manu', age: 29 },
+        { name: 'Steven', age: 20 }
+      ]
+    })
   }
 
   render() {
@@ -38,7 +47,7 @@ class App extends Component {
         <Person name={this.state.persons[0].name} age={this.state.persons[0].age}></Person>
         <Person name={this.state.persons[1].name} age={this.state.persons[1].age}></Person>
         <Person name={this.state.persons[2].name} age={this.state.persons[2].age}>
-        My hobbies: Racing
+          My hobbies: Racing
         </Person>
       </div>
     );
