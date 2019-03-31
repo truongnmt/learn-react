@@ -22,7 +22,8 @@ class App extends Component {
           </a>
         </header>
 
-        <Person />
+        <Person name="Bob" age="24"></Person>
+        <Person name="Max" age="28">My hobbies: Racing</Person>
       </div>
     );
   }
