@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import logo from '../assets/logo.svg';
 import './App.css';
-import Person from './Person/Person';
-import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
+import Persons from '../components/Persons/Persons';
+import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component {
   state = {
@@ -12,7 +12,7 @@ class App extends Component {
       { id: '3', name: 'Steven', age: 26 }
     ],
     otherState: 'some other value',
-    showPersons: false
+    showPersons: true
   }
 
   nameChangeHandler = (event, id) => {
@@ -59,37 +59,20 @@ class App extends Component {
     if (this.state.showPersons) {
       persons = (
         <div>
-          {this.state.persons.map((person, index) => {
-            return <ErrorBoundary key={person.id}>
-              <Person
-                click={() => this.deletePersonHandler(index)}
-                name={person.name}
-                age={person.age}
-                key={person.id}
-                changed={(event) => this.nameChangeHandler(event, person.id)} />
-            </ErrorBoundary>
-          })}
+          <Persons
+            persons={this.state.persons}
+            clicked={this.deletePersonHandler}
+            changed={this.nameChangeHandler} />
         </div>
       );
 
       style.backgroundColor = 'red';
     }
 
-    const classes = [];
-    if (this.state.persons.length <= 2) {
-      classes.push('red');
-    }
-    if (this.state.persons.length <= 1) {
-      classes.push('bold');
-    }
-
     return (
       <div className="App">
-        <h1> Hi, I'm a React App</h1>
-        <p className={classes.join(' ')}>This is really working!</p>
-        <button
-          style={style}
-          onClick={this.togglePersonsHandler}>Toggle Persons</button>
+        <Cockpit
+          toggle={this.togglePersonsHandler} />
         {persons}
       </div>
     );
